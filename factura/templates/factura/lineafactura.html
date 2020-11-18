@@ -1,0 +1,126 @@
+{% extends 'factura/base.html' %}
+{% load facturatags %}
+
+{% block title %}Detalle factura{% endblock %}
+
+{% block content %}
+
+<section class="hero is-light">
+    {% for f in facturas %}
+    <div class="hero-body">
+        <div class="container">
+            <div class="heading">
+                <h1 class="title">Factura: {{ f.num }} </h1>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<div class="container"> 
+    <div class="box box-good">
+        <div class="box-header">
+            <div class="columns is-mobile">
+                <div class="column is-6">
+                    <div class="shadow large"><i class="is-awesome-icon-content"> </i></div>
+                </div>
+                <div class="column is-6">
+                    <p class="has-text-right"> </p>
+                </div>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="columns is-mobile">
+                <div class="column is-7">
+                    <div class="content">
+                          Proveedor <br>
+                        <strong> Tus Caramelos </strong><br>
+                        C/ Margarita<br>
+                        Madrid, España 28080<br>
+                        Tfn: 914 75 58 41<br>
+                        Email: info@tuscaramelos.com
+                    </div>
+                </div>
+                <div class="column is-5">
+                    <div class="content has-text-right">
+                          <b> </b><br>
+                          <br>
+                          <b> </b>  <br>
+                          <b> </b>  <br>
+                          <b> </b> 
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-12">
+                    <div class="content">
+                          Cliente <br>
+                        <strong>Caramelos Paco</strong><br>
+                        C/ Falsa, 123 <br>
+                        Madrid, España 28004<br>
+                        Tfn: 911 21 40 78<br>
+                        Email: caramelospaco@gmail.com
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-12">
+                    <div class="table-is-responsive">
+                         <table class="table is-inverse">
+                          <thead>
+                            <tr>
+                              <th>Unidades</th>
+                              <th>Producto </th>
+                              <th>Precio unitario</th>
+                              <th>Precio total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for e in elementos %}
+                            <tr>
+                                  <td>{{ e.unidades }}</td>
+                                  <td>{{ e.nombre_producto }}</td>
+                                  <td>{{ e.precio_unitario }} €</td>
+                                  <td>{% precio_total e.precio_unitario e.unidades %} €</td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5">
+                
+                <ul class="list-group list-group-unbordered">
+                    <!-- <li class="list-group-item">
+                      <b>Subtotal:</b> <p class="is-pulled-right"></p>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Tax(9.3%):</b> <p class="is-pulled-right">$10.34</p>
+                    </li> -->
+                    <li class="list-group-item">
+                      <b>IVA:</b> 
+                      {% for e in elementos %}
+                      <p class="is-pulled-right"><b> {% importe_siniva e.precio_unitario e.unidades e.iva %} €</b></p>
+                      {% endfor %}
+                      <br>
+                      <b>Total:</b> 
+                      {% for e in elementos %}
+                      <p class="is-pulled-right"><b> {% total %} €</b></p>
+                      {% endfor %}
+                    </li>
+                  </ul>
+            </div>
+            <div class="box-footer has-text-right">
+                <a class="button">Cancel</a>
+                <a class="button is-dark">
+                  <span class="icon">
+                    <i class="fa fa-credit-card"></i>
+                  </span>
+                  <span>Payment</span>
+                </a>
+            </div>
+        </div>
+    </div>
+            
+
+{% endblock content %}

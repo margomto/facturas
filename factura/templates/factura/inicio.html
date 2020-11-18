@@ -1,0 +1,38 @@
+{% extends 'factura/base.html' %}
+
+{% block content %}
+<div class="tile is-ancestor">
+    <div class="tile is-4 is-vertical is-parent">
+      <div class="tile is-child box">
+        <p class="title is-large">Qué es Can I get de bill?</p>
+        <p>
+         Te presentamos tu nuevo gestor de facturas. <br>
+         Una manera <strong class="has-text-info">fácil</strong> y <strong class="has-text-success">dinámica</strong> de hacer un seguimiento de tus facturas emitidas.
+        </p>
+      </div>
+      <div class="tile is-child box">
+        <p class="title">Cómo funciona</p>
+        <p>
+          Es tan simple como indicar la <strong class="has-text-success">información básica</strong> de tu factura y añadirla a la lista. <br>
+          Podrás ver el detalle de cada una de ellas en un simple <span class="tag is-info">click</span> 
+        </p>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <div class="tile is-child box">
+        <p class="title"> Empieza ya </p>
+        <p>
+          Es hora de centrarte en tu <strong class="has-text-info">negocio</strong>, de la parte aburrida nos encargamos nosotros.  
+          <p>
+            <br>
+            <br>
+            <br>
+            <a href="{% url 'facturas' %}" class="button is-success is-large is-rounded is-fullwidth">Comenzar</a>
+          </p>
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}

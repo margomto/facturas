@@ -1,0 +1,56 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'factura/css/bulma-rtl.css' %}">
+    <title>Can I get de bill?</title>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <a href="{% url 'inicio' %}">
+      <h1 class="title">
+        Can I get the bill?
+      </h1>
+      </a>
+      <p class="subtitle">
+        Tu gestor de  <strong>facturas</strong>
+      </p>
+    </div>
+  </section>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="{% url 'inicio' %}" class="navbar-item">
+          Inicio
+        </a>
+  
+        <a href="{% url 'facturas' %}" class="navbar-item">
+          Mis facturas
+        </a>
+
+        </div>
+      </div>
+  </nav>
+
+  <br>  
+  
+    {% block content %}
+
+    {% endblock content %}  
+      
+    {% include 'factura/footer.html' %}
+
+  </body>
+</html>

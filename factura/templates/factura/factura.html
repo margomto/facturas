@@ -1,0 +1,32 @@
+{% extends 'factura/base.html' %}
+
+
+{% block content %}
+<br>
+<table class="table is-striped">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Emitida</th>
+            <th>Año</th>
+            <th>Nombre del cliente</th>
+            <th>Dirección del cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for f in facturas %}
+        <tr>
+            <td><a href="{% url 'detalle_factura' f.num %}">
+                {{ f.num }}
+              </a>
+            <td>{{  f.fecha_emision | date:"M d Y" }}</td>
+            <td>{{ f.anio | date:"Y" }}</td>
+            <td>{{  f.cliente_nombre }}</td>
+            <td>{{ f.cliente_direccion}}</td>
+        </tr>
+        {% endfor %}
+    
+    </tbody>
+</table>   
+
+{% endblock content %}
