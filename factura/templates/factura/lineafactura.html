@@ -34,7 +34,7 @@
                     <div class="content">
                           Proveedor <br>
                         <strong> Tus Caramelos </strong><br>
-                        C/ Margarita<br>
+                        C/ Margarita,20<br>
                         Madrid, España 28080<br>
                         Tfn: 914 75 58 41<br>
                         Email: info@tuscaramelos.com
@@ -100,12 +100,12 @@
                     <li class="list-group-item">
                       <b>IVA:</b> 
                       {% for e in elementos %}
-                      <p class="is-pulled-right"><b> {% importe_siniva e.precio_unitario e.unidades e.iva %} €</b></p>
+                      <p class="is-pulled-right"><b> {% importe_total e.precio_unitario e.unidades e.iva %} €</b></p>
                       {% endfor %}
                       <br>
                       <b>Total:</b> 
                       {% for e in elementos %}
-                      <p class="is-pulled-right"><b> {% total %} €</b></p>
+                      <p class="is-pulled-right"><b> {% total  %} €</b></p>
                       {% endfor %}
                     </li>
                   </ul>
@@ -116,7 +116,7 @@
                   <span class="icon">
                     <i class="fa fa-credit-card"></i>
                   </span>
-                  <span>Payment</span>
+                  <span>Pagar</span>
                 </a>
             </div>
         </div>

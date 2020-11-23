@@ -7,11 +7,11 @@ def precio_total(precio_unitario, unidades):
     total = precio_unitario * unidades
     return total
  
-@register.simple_tag
-def importe_siniva(precio_unitario, unidades, iva):
-    subimporte = precio_unitario * unidades
-    impuestos = (subimporte * iva)
-    return impuestos
+# @register.simple_tag
+# def importe_siniva(precio_unitario, unidades, iva):
+#     subimporte = precio_unitario * unidades
+#     impuestos = (subimporte * iva)
+#     return impuestos
 
 @register.simple_tag
 def importe_total(precio_unitario, unidades, iva):
