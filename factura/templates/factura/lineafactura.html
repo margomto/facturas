@@ -80,7 +80,7 @@
                                   <td>{{ e.unidades }}</td>
                                   <td>{{ e.nombre_producto }}</td>
                                   <td>{{ e.precio_unitario }} €</td>
-                                  <td>{% precio_total e.precio_unitario e.unidades %} €</td>
+                                  <td>{{ e.precio_real }} €</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -99,14 +99,17 @@
                     </li> -->
                     <li class="list-group-item">
                       <b>IVA:</b> 
-                      {% for e in elementos %}
-                      <p class="is-pulled-right"><b> {% importe_total e.precio_unitario e.unidades e.iva %} €</b></p>
-                      {% endfor %}
+                      <p class="is-pulled-right"><b> 
+                        </b></p>
                       <br>
                       <b>Total:</b> 
-                      {% for e in elementos %}
-                      <p class="is-pulled-right"><b> {% total  %} €</b></p>
-                      {% endfor %}
+                      
+                      <p class="is-pulled-right"><b>  
+                            {% for e in elementos %}
+                            {{ e.precio_real }}
+                            {% endfor %}
+                        </b></p>
+                     
                     </li>
                   </ul>
             </div>

@@ -22,7 +22,9 @@ class LineaFactura(models.Model):
     unidades = models.IntegerField(default=1)
     iva = models.DecimalField(max_digits=5, decimal_places=2, help_text='Indicar el I.V.A en tanto por uno', default=0.21)
 
-    
-        
+    def precio_real(self):
+        return self.precio_unitario * self.unidades
+
+
     
         

@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 
 from factura.models import Factura, LineaFactura
 from factura.forms import SignUpForm
+from django.db.models import Sum
 
 def factura(request):
     facturas = Factura.objects.all()
