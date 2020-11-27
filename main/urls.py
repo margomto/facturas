@@ -11,5 +11,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('facturas/', factura.views.factura, name="facturas"),
     path('detalle/<int:num_factura>', factura.views.lineafactura, name="detalle_factura"),
-    url('signup/', factura.views.register, name="register"),
+    url('nuevafactura/', factura.views.crear_factura, name="crear_factura"),
 ]

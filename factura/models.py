@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum
+from decimal import *
 # Create your models here.
 
 class Factura(models.Model): 
@@ -12,6 +12,22 @@ class Factura(models.Model):
         max_length=100,
         )  
 
+    def get_precio_total(self):
+        getcontext().prec = 4
+        total = Decimal(0)
+        for linea in self.lineafactura_set.all():
+            precio_item = linea.precio_real()
+            total += precio_item
+        return total    
+
+    def get_iva_total(self):
+        getcontext().prec = 3
+        impuestos = Decimal(0)
+        for linea in self.lineafactura_set.all():
+            iva = linea.iva_aplicable()
+            impuestos += iva
+        return impuestos    
+
 class LineaFactura(models.Model):
     factura = models.ForeignKey(
         Factura,
@@ -22,9 +38,14 @@ class LineaFactura(models.Model):
     unidades = models.IntegerField(default=1)
     iva = models.DecimalField(max_digits=5, decimal_places=2, help_text='Indicar el I.V.A en tanto por uno', default=0.21)
 
-    def precio_real(self):
-        return self.precio_unitario * self.unidades
+    def base_imponible(self):
+        return self.precio_unitario * Decimal(self.unidades)
 
+    def iva_aplicable(self):
+        return self.base_imponible() * self.iva
+
+    def precio_real(self):
+        return self.base_imponible() + self.iva_aplicable()
 
     
         

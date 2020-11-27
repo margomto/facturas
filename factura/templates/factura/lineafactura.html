@@ -80,7 +80,7 @@
                                   <td>{{ e.unidades }}</td>
                                   <td>{{ e.nombre_producto }}</td>
                                   <td>{{ e.precio_unitario }} €</td>
-                                  <td>{{ e.precio_real }} €</td>
+                                  <td>{{ e.base_imponible }} €</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -91,22 +91,20 @@
             <div class="column is-5">
                 
                 <ul class="list-group list-group-unbordered">
-                    <!-- <li class="list-group-item">
-                      <b>Subtotal:</b> <p class="is-pulled-right"></p>
-                    </li>
                     <li class="list-group-item">
-                      <b>Tax(9.3%):</b> <p class="is-pulled-right">$10.34</p>
-                    </li> -->
                     <li class="list-group-item">
                       <b>IVA:</b> 
                       <p class="is-pulled-right"><b> 
+                        {% for f in facturas %}
+                        {{ f.get_iva_total }} €
+                        {% endfor %}
                         </b></p>
                       <br>
                       <b>Total:</b> 
                       
                       <p class="is-pulled-right"><b>  
-                            {% for e in elementos %}
-                            {{ e.precio_real }}
+                            {% for f in facturas %}
+                            {{ f.get_precio_total }} €
                             {% endfor %}
                         </b></p>
                      
@@ -114,11 +112,8 @@
                   </ul>
             </div>
             <div class="box-footer has-text-right">
-                <a class="button">Cancel</a>
-                <a class="button is-dark">
-                  <span class="icon">
-                    <i class="fa fa-credit-card"></i>
-                  </span>
+                <a href="{% url 'facturas' %}" class="button">Cancel</a>
+                <a href="https://www.paypal.com/es/home" class="button is-dark">
                   <span>Pagar</span>
                 </a>
             </div>
