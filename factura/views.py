@@ -15,7 +15,6 @@ def factura(request):
 
 def lineafactura(request, num_factura):
     return render(request, 'factura/lineafactura.html', {
-        'elementos': LineaFactura.objects.all().order_by('precio_unitario'),
         'factura': Factura.objects.get(pk=num_factura),
     })
 
