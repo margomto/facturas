@@ -6,15 +6,13 @@
 {% block content %}
 
 <section class="hero is-light">
-    {% for f in facturas %}
     <div class="hero-body">
         <div class="container">
             <div class="heading">
-                <h1 class="title">Factura: {{ f.num }} </h1>
+                <h1 class="title">Factura: {{ factura.num }} </h1>
             </div>
         </div>
     </div>
-    {% endfor %}
 </section>
 <div class="container"> 
     <div class="box box-good">
@@ -32,7 +30,6 @@
             <div class="columns is-mobile">
                 <div class="column is-7">
                     <div class="content">
-                          Proveedor <br>
                         <strong> Tus Caramelos </strong><br>
                         C/ Margarita,20<br>
                         Madrid, España 28080<br>
@@ -50,17 +47,6 @@
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column is-12">
-                    <div class="content">
-                          Cliente <br>
-                        <strong>Caramelos Paco</strong><br>
-                        C/ Falsa, 123 <br>
-                        Madrid, España 28004<br>
-                        Tfn: 911 21 40 78<br>
-                        Email: caramelospaco@gmail.com
-                    </div>
-                </div>
             </div>
             <div class="columns">
                 <div class="column is-12">
@@ -75,14 +61,14 @@
                             </tr>
                           </thead>
                           <tbody>
-                            {% for e in elementos %}
+                            {% for l in factura.lineafactura_set.all %}
                             <tr>
-                                  <td>{{ e.unidades }}</td>
-                                  <td>{{ e.nombre_producto }}</td>
-                                  <td>{{ e.precio_unitario }} €</td>
-                                  <td>{{ e.base_imponible }} €</td>
-                            </tr>
+                                  <td>{{ l.unidades }}</td>
+                                  <td>{{ l.nombre_producto }}</td>
+                                  <td>{{ l.precio_unitario }} €</td>
+                                  <td>{{ l.base_imponible }} €</td>
                             {% endfor %}
+                            </tr>
                           </tbody>
                         </table>
                     </div>
@@ -95,17 +81,13 @@
                     <li class="list-group-item">
                       <b>IVA:</b> 
                       <p class="is-pulled-right"><b> 
-                        {% for f in facturas %}
-                        {{ f.get_iva_total }} €
-                        {% endfor %}
+                        {{ factura.get_iva_total }} €
                         </b></p>
                       <br>
                       <b>Total:</b> 
                       
                       <p class="is-pulled-right"><b>  
-                            {% for f in facturas %}
-                            {{ f.get_precio_total }} €
-                            {% endfor %}
+                            {{ factura.get_precio_total }} €
                         </b></p>
                      
                     </li>
